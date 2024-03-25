@@ -19,6 +19,12 @@ const hits = computed(() => props.data ? props.data.hits.hits : []);
 for (const hit of hits.value) {
   if (!hit._source.summary) console.log(hit);
 }
+
+function convertDate(theDate) {
+  let dateParts = theDate.split("-");
+  let convertedDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
+  return convertedDate;
+}
 </script>
 <template>
   <div id="complete-loading" v-if="store.isLoading">
@@ -58,7 +64,7 @@ for (const hit of hits.value) {
               <div class="flex flex-column justify-content-between flex-1 gap-4">
                 <div>
                   <h2 class="title">{{ hit._source.title.fr }}</h2>
-                  <p class="subtitle">Date: {{ hit._source.date }}</p>
+                  <p class="subtitle">Date: {{ convertDate(hit._source.date) }}</p>
                     <p class="text">
                       {{ hit._source.abstract.fr ? hit._source.abstract.fr : 'No summary available' }}
                     </p>
