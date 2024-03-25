@@ -91,7 +91,7 @@ const fetchData = async (from) => {
 <style scoped>
 #areas-of-interest {
   margin-bottom: 20px;
-  width: 400px;
+  width: 100%;
 }
 
 .area-of-interest {
