@@ -11,7 +11,7 @@ const data = ref(null)
   <main id="container">
     <h1>Page title</h1>
     <TheSearch @results="data = $event" />
-    <TheListResult v-if="data" :data="data" />
+    <TheListResult :data="data" />
   </main>
 </template>
 

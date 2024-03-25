@@ -4,12 +4,13 @@ import { ref } from "vue";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
 import Card from "primevue/card";
+import {store} from '@/lib/store'
 
 const emits = defineEmits(["results", Object]);
 
 const baseUrl = "https://entscheidsuche.ch/_search.php";
 let from = 0;
-const size = 300;
+const size = 20;
 const areaOfInterests = ref([
   {
     field: "attachment.content",
@@ -22,6 +23,7 @@ const areaOfInterests = ref([
 ]);
 
 const fetchData = async (from) => {
+  store.isLoading = true;
   const requestBody = {
     from: from,
     size: size,
@@ -47,13 +49,15 @@ const fetchData = async (from) => {
     const response = await axios.post(baseUrl, requestBody, {
       params: { from, size },
     });
-
+    
     console.log("Données récupérées:", response.data);
-
+    
     emits("results", response.data);
+    
   } catch (error) {
     console.error("Erreur lors de la récupération des données:", error);
   }
+  store.isLoading = false;
 };
 </script>
 
