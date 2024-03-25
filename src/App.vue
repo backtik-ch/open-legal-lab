@@ -9,7 +9,7 @@ const data = ref(null)
 
 <template>
   <main id="container">
-    <h1>Page title</h1>
+    <h1>Legal Lens</h1>
     <TheSearch @results="data = $event" />
     <TheListResult :data="data" />
   </main>

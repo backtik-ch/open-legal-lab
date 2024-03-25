@@ -10,7 +10,7 @@ const emits = defineEmits(["results", Object]);
 
 const baseUrl = "https://entscheidsuche.ch/_search.php";
 let from = 0;
-const size = 20;
+const size = 100;
 const areaOfInterests = ref([
   {
     field: "attachment.content",
@@ -49,11 +49,7 @@ const fetchData = async (from) => {
     const response = await axios.post(baseUrl, requestBody, {
       params: { from, size },
     });
-    
-    console.log("Données récupérées:", response.data);
-    
     emits("results", response.data);
-    
   } catch (error) {
     console.error("Erreur lors de la récupération des données:", error);
   }
