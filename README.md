@@ -1,6 +1,9 @@
-# demo
+# Legal Lens
 
-This template should help get you started developing with Vue 3 in Vite.
+This repo contains part of the Legal Lens code made during the Open Legal Lab Hackathon.
+
+This code aims to provide and simple interface that allows the user to browse through [entscheidsuche.ch](https://entscheidsuche.ch/) documents using groups of keywords.
+
 
 ## Recommended IDE Setup
 
