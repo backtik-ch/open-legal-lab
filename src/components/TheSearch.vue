@@ -63,7 +63,7 @@ const fetchData = async (from) => {
 
 <template>
   <div id="areas-of-interest">
-    <Card v-for="(aoi, index) in areaOfInterests" class="area-of-interest">
+    <Card v-for="(aoi, index) in areaOfInterests" :key="index" class="area-of-interest">
       <template #title>
         <div class="card-header">
           <div>Area of interest {{ index + 1 }}</div>
@@ -72,7 +72,7 @@ const fetchData = async (from) => {
       </template>
       <template #content>
         <div class="keywords">
-          <div v-for="(keyword, index) in aoi.keywords" class="keyword">
+          <div v-for="(keyword, index) in aoi.keywords" :key="index" class="keyword">
             <InputText :key="index" v-model="aoi.keywords[index]" placeholder="Enter a keyword..." />
             <Button @click="aoi.keywords.splice(index, 1)" icon="pi pi-times" />
             <br />
