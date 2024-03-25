@@ -1,6 +1,6 @@
 import './assets/main.css'
 import PrimeVue from "primevue/config";
-import "primevue/resources/themes/aura-light-green/theme.css";
+import "primevue/resources/themes/aura-light-blue/theme.css";
 import "primeicons/primeicons.css";
 
 
