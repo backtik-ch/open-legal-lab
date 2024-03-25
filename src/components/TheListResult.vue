@@ -3,19 +3,13 @@
 import DataView from "primevue/dataview";
 import Button from "primevue/button";
 import ResultCard from "@/components/ResultCard.vue";
-import Skeleton from 'primevue/skeleton';
-import {store} from '@/lib/store'
+import Skeleton from "primevue/skeleton";
+import { store } from "@/lib/store";
 
 import { computed, watchEffect } from "vue";
 
-const props = defineProps({
-  data: Object
-});
-watchEffect(() => {
-  console.log(props.data);
-});
-const totalResult = computed(() => props.data ? props.data.hits.total.value : 0);
-const hits = computed(() => props.data ? props.data.hits.hits : []);
+const totalResult = computed(() => (store.data ? store.data.hits.total.value : 0));
+const hits = computed(() => (store.data ? store.data.hits.hits : []));
 for (const hit of hits.value) {
   if (!hit._source.summary) console.log(hit);
 }
@@ -44,7 +38,7 @@ function convertDate(theDate) {
       </div>
     </div>
   </div>
-  <div class="data" v-if="!store.isLoading && data">
+  <div class="data" v-if="!store.isLoading && store.data">
     <div class="title">
       <h1>Results ({{ totalResult }})</h1>
     </div>
@@ -58,18 +52,22 @@ function convertDate(theDate) {
               :link="hit._source.attachment.content_url" 
               :title="hit._source.title.fr"
               ></ResultCard> -->
-            <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3"
-              :class="{ 'border-top-1 surface-border': index !== 0 }">
+            <div
+              class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3"
+              :class="{ 'border-top-1 surface-border': index !== 0 }"
+            >
               <!-- Ici, ajustez selon le contenu de vos données -->
               <div class="flex flex-column justify-content-between flex-1 gap-4">
                 <div>
                   <h2 class="title">{{ hit._source.title.fr }}</h2>
                   <p class="subtitle">{{ convertDate(hit._source.date) }}</p>
-                    <p class="text">
-                      {{ hit._source.abstract ? hit._source.abstract.fr : 'No summary available' }}
-                    </p>
+                  <p class="text">
+                    {{ hit._source.abstract ? hit._source.abstract.fr : "No summary available" }}
+                  </p>
                   <div class="button">
-                    <a :href="hit._source.attachment.content_url" target="_blank"><Button label="Document Link" /></a>
+                    <a :href="hit._source.attachment.content_url" target="_blank"
+                      ><Button label="Document Link"
+                    /></a>
                   </div>
                 </div>
               </div>
@@ -103,9 +101,9 @@ function convertDate(theDate) {
 
 .loading-state-container .header {
   display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  flex-direction: column;
 }
 
 .button {
@@ -127,5 +125,4 @@ function convertDate(theDate) {
   margin: 5px 0;
   font-size: 12px;
 }
-
 </style>

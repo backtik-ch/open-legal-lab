@@ -1,17 +1,14 @@
 <script setup>
 import TheListResult from "@/components/TheListResult.vue";
 import TheSearch from "@/components/TheSearch.vue";
-import { ref } from "vue";
-
-const data = ref(null)
 
 </script>
 
 <template>
   <main id="container">
     <h1>Legal Lens</h1>
-    <TheSearch @results="data = $event" />
-    <TheListResult :data="data" />
+    <TheSearch />
+    <TheListResult />
   </main>
 </template>
 

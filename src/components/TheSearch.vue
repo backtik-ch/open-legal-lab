@@ -6,8 +6,6 @@ import Button from "primevue/button";
 import Card from "primevue/card";
 import {store} from '@/lib/store'
 
-const emits = defineEmits(["results", Object]);
-
 const baseUrl = "https://entscheidsuche.ch/_search.php";
 let from = 0;
 const size = 100;
@@ -49,7 +47,7 @@ const fetchData = async (from) => {
     const response = await axios.post(baseUrl, requestBody, {
       params: { from, size },
     });
-    emits("results", response.data);
+    store.data = response.data;
   } catch (error) {
     console.error("Erreur lors de la récupération des données:", error);
   }
