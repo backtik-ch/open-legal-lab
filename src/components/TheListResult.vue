@@ -64,9 +64,9 @@ function convertDate(theDate) {
               <div class="flex flex-column justify-content-between flex-1 gap-4">
                 <div>
                   <h2 class="title">{{ hit._source.title.fr }}</h2>
-                  <p class="subtitle">Date: {{ convertDate(hit._source.date) }}</p>
+                  <p class="subtitle">{{ convertDate(hit._source.date) }}</p>
                     <p class="text">
-                      {{ hit._source.abstract.fr ? hit._source.abstract.fr : 'No summary available' }}
+                      {{ hit._source.abstract ? hit._source.abstract.fr : 'No summary available' }}
                     </p>
                   <div class="button">
                     <a :href="hit._source.attachment.content_url" target="_blank"><Button label="Document Link" /></a>
