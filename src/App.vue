@@ -8,7 +8,7 @@ const data = ref(null)
 </script>
 
 <template>
-  <main>
+  <main id="container">
     <h1>Page title</h1>
     <TheSearch @results="data = $event" />
     <TheListResult v-if="data" :data="data" />
@@ -16,5 +16,9 @@ const data = ref(null)
 </template>
 
 <style scoped>
-
+#container {
+  width: 60%;
+  margin: 0 auto;
+  min-width: 500px;
+}
 </style>

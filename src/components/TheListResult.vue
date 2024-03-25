@@ -13,12 +13,11 @@ watchEffect(() => {
 });
 const totalResult = computed(() => props.data.hits.total.value);
 const hits = computed(() => props.data.hits.hits);
-for (const hit of hits.value) {
-  if (!hit._source.summary) console.log(hit);
-}
+// for (const hit of hits.value) {
+//   if (!hit._source.summary) console.log(hit);
+// }
 </script>
 <template>
-  <div id="container">
     <div class="title">
       <h1>Results ({{ totalResult }})</h1>
     </div>
@@ -48,7 +47,6 @@ for (const hit of hits.value) {
         </div>
       </template>
     </DataView>
-  </div>
 </template>
 
 <style scoped>
@@ -56,12 +54,6 @@ for (const hit of hits.value) {
   margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
-}
-
-#container {
-  width: 60%;
-  margin: 0 auto;
-  min-width: 500px;
 }
 
 .title {

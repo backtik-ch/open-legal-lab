@@ -24,7 +24,7 @@ const areaOfInterests = ref([
 const fetchData = async (from) => {
   const requestBody = {
     from: from,
-    size: 10,
+    size: size,
     query: {
       bool: {
         must: areaOfInterests.value.map((aoi) => ({
@@ -48,6 +48,8 @@ const fetchData = async (from) => {
       params: { from, size },
     });
 
+    console.log("Données récupérées:", response.data);
+
     emits("results", response.data);
   } catch (error) {
     console.error("Erreur lors de la récupération des données:", error);
@@ -67,7 +69,7 @@ const fetchData = async (from) => {
       <template #content>
         <div class="keywords">
           <div v-for="(keyword, index) in aoi.keywords" class="keyword">
-            <InputText :key="index" v-model="aoi.keywords[index]" />
+            <InputText :key="index" v-model="aoi.keywords[index]" placeholder="Enter a keyword..." />
             <Button @click="aoi.keywords.splice(index, 1)" icon="pi pi-times" />
             <br />
           </div>
